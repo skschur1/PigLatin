@@ -1,11 +1,34 @@
 import java.util.*;
 
 public void setup() {
-	String lines[] = loadStrings("words.txt");
-	System.out.println("there are " + lines.length + " lines");
+	String lines[] = loadStrings("LowellHymn.txt");
+	String words = new String();
+	String complete = new String();
+	for (int i = 0; i < lines.length; i++)
+	{
+		words = words + lines[i] + " ";
+	}
+	for(int i = 0; i < words.length(); i++)
+	{
+		if (words.charAt(i) == ' ' || words.charAt(i) == '.' || words.charAt(i) == ',')
+			i++;
+		else
+		{
+			for (int o = i; o < words.length(); o++)
+			{
+				if (words.charAt(o) == ' ' || words.charAt(o) == '.' || words.charAt(o) == ',')
+				{
+					complete = complete + " " + pigLatin(words.substring(i, o));
+					break;
+				}
+			}
+		}
+	}
+	System.out.println(complete);
+	/*System.out.println("there are " + lines.length + " lines");
 	for (int i = 0 ; i < lines.length; i++) {
 	  System.out.println(pigLatin(lines[i]));
-	}
+	}*/
 }
 public void draw()
 {
@@ -19,8 +42,6 @@ public int findFirstVowel(String word)
   }
   return -1;
 }
-
-
 public String pigLatin(String sWord)
 //precondition: sWord is a valid String of length greater than 0
 //postcondition: returns the pig latin equivalent of sWord
