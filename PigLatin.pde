@@ -4,6 +4,7 @@ public void setup() {
 	String lines[] = loadStrings("LowellHymn.txt");
 	String words = new String();
 	String complete = new String();
+	int wordCount = 0;
 	for (int i = 0; i < lines.length; i++)
 	{
 		words = words + lines[i] + " ";
@@ -19,16 +20,15 @@ public void setup() {
 				if (words.charAt(o) == ' ' || words.charAt(o) == '.' || words.charAt(o) == ',')
 				{
 					complete = complete + " " + pigLatin(words.substring(i, o));
+					i+=(o-i);
+					wordCount++;
 					break;
 				}
 			}
 		}
 	}
+	System.out.println("Words translated: " + wordCount);
 	System.out.println(complete);
-	/*System.out.println("there are " + lines.length + " lines");
-	for (int i = 0 ; i < lines.length; i++) {
-	  System.out.println(pigLatin(lines[i]));
-	}*/
 }
 public void draw()
 {
